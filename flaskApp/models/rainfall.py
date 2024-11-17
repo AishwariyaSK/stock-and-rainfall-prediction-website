@@ -46,17 +46,9 @@ def predict_rainfall():
     km_prediction = km_model.predict(input_data)
     gm_prediction = gm_model.predict(input_data)
 
-
-    print(type(km_prediction))      # Check the type of the object
-    print(km_prediction)            # Inspect the values
-    print(type(km_prediction[0]))   # Check the type of the first element
-
     mapping = {0: 'no', 1: 'yes'}   
     km_prediction = mapping[km_prediction[0]]
     gm_prediction = mapping[gm_prediction[0]]
-    print(gm_prediction)  
-    print(km_prediction)  
-
-
+    
 
     return render_template('rainfall.html', km_prediction=km_prediction, gm_prediction=gm_prediction,sample_cases=sample_cases)
