@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainfall Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Rainfall Prediction</h1>
+        <!-- Sample Test Case Dropdown -->
+        <select id="sampleSelect" onchange="fillForm(this)">
+            <option value="">Select Sample</option>
+            {% for sample in sample_cases %}
+            <option value="{{ loop.index0 }}">Sample {{ loop.index }}</option>
+            {% endfor %}
+        </select>
+        <form action="/predict_rainfall" method="post">
+            <!-- Form fields for rainfall prediction -->
+            <label for="pressure">Pressure:</label>
+            <input type="number" name="pressure" id="pressure" required step="0.01">
+            <label for="maxtemp">Max Temp:</label>
+            <input type="number" name="maxtemp" id="maxtemp" required step="0.01">
+            <label for="temparature">Temperature:</label>
+            <input type="number" name="temparature" id="temparature" required step="0.01">
+            <label for="mintemp">Min Temp:</label>
+            <input type="number" name="mintemp" id="mintemp" required step="0.01">
+            <label for="dewpoint">Dewpoint:</label>
+            <input type="number" name="dewpoint" id="dewpoint" required step="0.01">
+            <label for="humidity">Humidity:</label>
+            <input type="number" name="humidity" id="humidity" required step="0.01">
+            <label for="cloud">Cloud:</label>
+            <input type="number" name="cloud" id="cloud" required step="0.01">
+            <label for="windspeed">Wind Speed:</label>
+            <input type="number" name="windspeed" id="windspeed" required step="0.01">
+        
+            <input type="submit" value="Predict">
+        </form>
+        
+        {% if km_prediction %}
+            <h2>KMeans Prediction: {{ km_prediction }}</h2>
+        {% endif %}
+        {% if gm_prediction %}
+            <h2>Gaussian Mixture Prediction: {{ gm_prediction }}</h2>
+        {% endif %}
+        
+    </div>
+
+    <script>
+        function fillForm(select) {
+            const index = select.value;
+            if (index !== "") {
+                const sample = {{ sample_cases | tojson }}[index];
+                document.querySelector('input[name="pressure"]').value = sample.pressure;
+                document.querySelector('input[name="maxtemp"]').value = sample.maxtemp;
+                document.querySelector('input[name="temparature"]').value = sample.temparature;
+                document.querySelector('input[name="mintemp"]').value = sample.mintemp;
+                document.querySelector('input[name="dewpoint"]').value = sample.dewpoint;
+                document.querySelector('input[name="humidity"]').value = sample.humidity;
+                document.querySelector('input[name="cloud"]').value = sample.cloud;
+                document.querySelector('input[name="windspeed"]').value = sample.windspeed;
+            }
+        }
+    </script>
+</body>
+</html>

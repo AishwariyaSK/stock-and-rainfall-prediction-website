@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Stock Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
+    
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Amazon Stock Prediction</h1>
+
+        <!-- Sample Test Case Dropdown -->
+        <select id="sampleSelect" onchange="fillForm(this)">
+            <option value="">Select Sample</option>
+            {% for sample in sample_cases %}
+            <option value="{{ loop.index0 }}">Sample {{ loop.index }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Prediction Form -->
+        <form method="POST" action="/predict_amazon_stock">
+            <label for="open">Open Price:</label>
+            <input type="number" name="open" id="open" required step="0.01">
+            
+            <label for="close">Close Price:</label>
+            <input type="number" name="close" id="close" required step="0.01">
+            
+            <label for="low">Low Price:</label>
+            <input type="number" name="low" id="low" required step="0.01">
+            
+            <label for="high">High Price:</label>
+            <input type="number" name="high" id="high" required step="0.01">
+            
+            <input type="submit" value="Predict">
+        </form>
+
+        <!-- Prediction Results -->
+        {% if dtr_prediction and lr_prediction %}
+            <div class="results">
+                <p>Decision Tree Prediction: <span class="prediction">${{ dtr_prediction }}</span></p>
+                <p>Linear Regression Prediction: <span class="prediction">${{ lr_prediction }}</span></p>
+            </div>
+        {% endif %}
+
+        
+    
+    
+    </div>
+    <script>
+        function fillForm(select) {
+            const index = select.value;
+            if (index !== "") {
+                const sample = {{ sample_cases | tojson }}[index];
+                document.querySelector('input[name="open"]').value = sample.open;
+                document.querySelector('input[name="close"]').value = sample.close;
+                document.querySelector('input[name="low"]').value = sample.low;
+                document.querySelector('input[name="high"]').value = sample.high;
+                document.querySelector('input[name="volume"]').value = sample.volume;
+            }
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+    "amazon_stock": [
+        {"open": 136.25, "close": 133.90, "low": 133.14, "high": 136.61, "volume": 7599900},
+        {"open": 133.43, "close": 134.69, "low": 131.81, "high": 135.48, "volume": 8851900},
+        {"open": 134.60, "close": 132.25, "low": 131.65, "high": 134.73, "volume": 7178800},
+        {"open": 132.01, "close": 130.00, "low": 128.80, "high": 132.32, "volume": 11030200},
+        {"open": 130.56, "close": 133.52, "low": 129.03, "high": 133.68, "volume": 9830500}
+    ],
+    "rainfall": [
+        {"pressure": 1025.9, "maxtemp": 19.9, "temparature": 18.3, "mintemp": 16.8, "dewpoint": 13.1, "humidity": 72, "cloud": 49, "windspeed": 26.3},
+        {"pressure": 1022.0, "maxtemp": 21.7, "temparature": 18.9, "mintemp": 17.2, "dewpoint": 15.6, "humidity": 81, "cloud": 83, "windspeed": 15.3},
+        {"pressure": 1019.7, "maxtemp": 20.3, "temparature": 19.3, "mintemp": 18.0, "dewpoint": 18.4, "humidity": 95, "cloud": 91, "windspeed": 14.2},
+        {"pressure": 1018.9, "maxtemp": 22.3, "temparature": 20.6, "mintemp": 19.1, "dewpoint": 18.8, "humidity": 90, "cloud": 88, "windspeed": 16.9},
+        {"pressure": 1015.9, "maxtemp": 21.3, "temparature": 20.7, "mintemp": 20.2, "dewpoint": 19.9, "humidity": 95, "cloud": 81, "windspeed": 13.7}
+    ]
+}
